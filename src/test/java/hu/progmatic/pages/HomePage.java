@@ -10,6 +10,7 @@ public class HomePage {
     WebDriver driver;
     WebDriverWait wait;
     By headerBy = By.id("top");
+    By makeAppointmentButtonBy = By.id("btn-make-appointment");
 
     public HomePage(WebDriver driver, WebDriverWait wait) {
         this.driver = driver;
@@ -21,5 +22,15 @@ public class HomePage {
         WebElement headerElement = driver.findElement(headerBy);
         Assert.assertTrue(headerElement.isDisplayed());
         System.out.println("Homepage loaded properly.");
+    }
+
+    public void isClickabelMakeAppointmentButton() throws InterruptedException {
+        driver.get("https://katalon-demo-cura.herokuapp.com");
+        WebElement makeAppointmentButton = driver.findElement(makeAppointmentButtonBy);
+       makeAppointmentButton.click();
+        Thread.sleep(3000);
+        Assert.assertEquals(driver.getCurrentUrl(),
+                "https://katalon-demo-cura.herokuapp.com/profile.php#login");
+        System.out.println("Make Appointment button properly working.");
     }
 }

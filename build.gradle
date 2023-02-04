@@ -17,3 +17,19 @@ dependencies {
 test {
     useTestNG()
 }
+
+
+task smokeTests(type: Test) { // we define a task with name 'smokeTests'
+    def groups = System.getProperty('groups', 'smoke')
+    useTestNG() {
+        includeGroups groups
+    }
+}
+
+
+task regressionTests(type: Test) { // we define a task with name 'smokeTests'
+    def groups = System.getProperty('groups', 'regression')
+    useTestNG() {
+        includeGroups groups
+    }
+}
